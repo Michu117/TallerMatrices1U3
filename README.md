@@ -28,3 +28,5 @@ Cada ejercicio se encuentra en un archivo separado. A continuación se detalla l
 - [`TallerMatrices1U3/ejerciciosM1/12_divim.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/12_divim.c)
 13. **Potencia de matrices**
 - [`TallerMatrices1U3/ejerciciosM1/13_potenciam.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/13_potenciam.c)
+14. **Potencia de matrices**
+- [`TallerMatrices1U3/ejerciciosM1/14_sumamhexa.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/14_sumamhexa.c)
