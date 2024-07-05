@@ -1,23 +1,23 @@
 #include <stdio.h>
 int main() {
     int filas, columnas;
-    // Ingresar las dimensiones de la matriz //
-    for (int i = 0; filas != columnas; i++)
-    {
+    // Ingresar las dimensiones de la matriz
+    while (filas < 2 || columnas < 2 || filas != columnas) {
         printf("\nIntroduce el número de filas: ");
         scanf("%d", &filas);
         printf("\nIntroduce el número de columnas: ");
         scanf("%d", &columnas);
-        // Mínimo de filas y columnas //
+
+        // Mínimo de filas y columnas
         if (filas < 2 || columnas < 2) {
-        printf("\nLa matriz debe tener al menos 2 filas y 2 columnas.\n");
+            printf("\nLa matriz debe tener al menos 2 filas y 2 columnas.\n");
         }
-        // Condición para que la matriz sea cuadrada //
-        if (filas != columnas){
-        printf("\nIngrese el mismo número de filas y columnas para tener una matriz cuadrada\n");
+
+        // Condición para que la matriz sea cuadrada
+        if (filas != columnas) {
+            printf("\nIngrese el mismo número de filas y columnas para tener una matriz cuadrada\n");
         }
     }
-    
 
     int matriz[filas][columnas];
 
