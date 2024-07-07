@@ -7,17 +7,22 @@ void imprimirDimensiones(int filas, int columnas) {
 }
 int main() {
     int filas, columnas;
+    // Ingresar las dimensiones de la matriz
+    while (filas < 2 || columnas < 2 || filas != columnas) {
+        printf("\nIntroduce el número de filas: ");
+        scanf("%d", &filas);
+        printf("\nIntroduce el número de columnas: ");
+        scanf("%d", &columnas);
 
-    // Ingresar las dimensiones de la matriz //
-    printf("Introduce el número de filas: ");
-    scanf("%d", &filas);
-    printf("Introduce el número de columnas: ");
-    scanf("%d", &columnas);
+        // Mínimo de filas y columnas
+        if (filas < 2 || columnas < 2) {
+            printf("\nLa matriz debe tener al menos 2 filas y 2 columnas.\n");
+        }
 
-    // Mínimo de Filas y Columnas //
-    if (filas < 2 || columnas < 2) {
-        printf("La matriz debe tener al menos 2 filas y 2 columnas.\n");
-        return 1;
+        // Condición para que la matriz sea cuadrada
+        if (filas != columnas) {
+            printf("\nIngrese el mismo número de filas y columnas para tener una matriz cuadrada\n");
+        }
     }
 
     int matriz[filas][columnas];
