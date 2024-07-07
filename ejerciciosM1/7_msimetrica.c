@@ -22,7 +22,7 @@ int main() {
 
     printf("\n");
 
-    printf("Ejercicio 6 (Presentar la matriz simétrica) \n");
+    printf("Ejercicio 7 (Presentar la matriz simétrica) \n");
     int transpuesta[3][3];
     // Calcular la matriz traspuesta
     for (int i = 0; i < 3; i++) {
