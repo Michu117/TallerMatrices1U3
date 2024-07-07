@@ -19,14 +19,23 @@ void imprimirMatriz(int filas, int columnas, int matriz[filas][columnas]) {
 
 int main() {
     int filas, columnas;
+    // Ingresar las dimensiones de la matriz
+    while (filas < 2 || columnas < 2 || filas != columnas) {
+        printf("\nIntroduce el número de filas: ");
+        scanf("%d", &filas);
+        printf("\nIntroduce el número de columnas: ");
+        scanf("%d", &columnas);
 
-    // Ingresar las dimensiones de las 2 matrices
-    printf("Introduce el número de filas: ");
-    scanf("%d", &filas);
-    printf("Introduce el número de columnas: ");
-    scanf("%d", &columnas);
+        // Mínimo de filas y columnas
+        if (filas < 2 || columnas < 2) {
+            printf("\nLa matriz debe tener al menos 2 filas y 2 columnas.\n");
+        }
 
-    // Declarar las matrices
+        // Condición para que la matriz sea cuadrada
+        if (filas != columnas) {
+            printf("\nIngrese el mismo número de filas y columnas para tener una matriz cuadrada\n");
+        }
+    }
     int matriz1[filas][columnas], matriz2[filas][columnas], resultado[filas][columnas];
 
     // Ingresar los elementos de la matriz 1
