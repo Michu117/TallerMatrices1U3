@@ -1,14 +1,12 @@
 #include <stdio.h>
 
-#define MAX_DIM 10  // Tamaño máximo permitido para la matriz
-
-// Función para multiplicar dos matrices //
-void multiplicarMatrices(int mat1[][MAX_DIM], int mat2[][MAX_DIM], int resultado[][MAX_DIM], int filas1, int cols1, int cols2) {
+// Función para multiplicar dos matrices de 3x3
+void multiplicarMatrices(int mat1[3][3], int mat2[3][3], int resultado[3][3]) {
     int i, j, k;
-    for (i = 0; i < filas1; i++) {
-        for (j = 0; j < cols2; j++) {
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             resultado[i][j] = 0;
-            for (k = 0; k < cols1; k++) {
+            for (k = 0; k < 3; k++) {
                 resultado[i][j] += mat1[i][k] * mat2[k][j];
             }
         }
@@ -16,20 +14,20 @@ void multiplicarMatrices(int mat1[][MAX_DIM], int mat2[][MAX_DIM], int resultado
 }
 
 // Función para copiar una matriz en otra
-void copiarMatriz(int origen[][MAX_DIM], int destino[][MAX_DIM], int filas, int cols) {
+void copiarMatriz(int origen[3][3], int destino[3][3]) {
     int i, j;
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             destino[i][j] = origen[i][j];
         }
     }
 }
 
 // Función para imprimir una matriz
-void imprimirMatriz(int matriz[][MAX_DIM], int filas, int cols) {
+void imprimirMatriz(int matriz[3][3]) {
     int i, j;
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             printf("%d\t", matriz[i][j]);
         }
         printf("\n");
@@ -37,13 +35,12 @@ void imprimirMatriz(int matriz[][MAX_DIM], int filas, int cols) {
 }
 
 // Función para calcular la potencia de una matriz
-void potenciaMatriz(int matriz[][MAX_DIM], int resultado[][MAX_DIM], int filas, int cols, int exponente) {
-    int temp[MAX_DIM][MAX_DIM];
+void potenciaMatriz(int matriz[3][3], int resultado[3][3], int exponente) {
+    int temp[3][3];
     int i, j;
 
-    
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             if (i == j)
                 resultado[i][j] = 1;  // Diagonal principal 1
             else
@@ -54,30 +51,24 @@ void potenciaMatriz(int matriz[][MAX_DIM], int resultado[][MAX_DIM], int filas, 
     // Algoritmo para calcular la potencia
     while (exponente > 0) {
         if (exponente % 2 != 0) {
-            multiplicarMatrices(resultado, matriz, temp, filas, cols, cols);
-            copiarMatriz(temp, resultado, filas, cols);
+            multiplicarMatrices(resultado, matriz, temp);
+            copiarMatriz(temp, resultado);
         }
-        multiplicarMatrices(matriz, matriz, temp, filas, cols, cols);
-        copiarMatriz(temp, matriz, filas, cols);
+        multiplicarMatrices(matriz, matriz, temp);
+        copiarMatriz(temp, matriz);
         exponente /= 2;
     }
 }
 
 int main() {
-    int filas, cols, exponente;
-    
-    printf("Ingrese el número de filas y columnas de la matriz (cuadrada): ");
-    scanf("%d", &filas);
-    cols = filas;
-
-    int matriz[MAX_DIM][MAX_DIM];
-    int resultado[MAX_DIM][MAX_DIM];
-    int i, j;
+    int matriz[3][3];
+    int resultado[3][3];
+    int i, j, exponente;
 
     // Leer elementos de la matriz
-    printf("Ingrese los elementos de la matriz (%d x %d):\n", filas, cols);
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
+    printf("Ingrese los elementos de la matriz (3 x 3):\n");
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
             scanf("%d", &matriz[i][j]);
         }
     }
@@ -87,11 +78,11 @@ int main() {
     scanf("%d", &exponente);
 
     // Calcular la potencia de la matriz
-    potenciaMatriz(matriz, resultado, filas, cols, exponente);
+    potenciaMatriz(matriz, resultado, exponente);
 
     // Imprimir el resultado
     printf("\nResultado de la potencia de la matriz:\n");
-    imprimirMatriz(resultado, filas, cols);
+    imprimirMatriz(resultado);
 
     return 0;
 }
