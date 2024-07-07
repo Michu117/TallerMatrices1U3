@@ -1,66 +1,92 @@
 #include <stdio.h>
+// Función para calcular el determinante de una matriz 3x3
+float determinante(float matriz[3][3]) {
+    return matriz[0][0] * (matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1]) -
+           matriz[0][1] * (matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0]) +
+           matriz[0][2] * (matriz[1][0] * matriz[2][1] - matriz[1][1] * matriz[2][0]);
+}
 
-#define MAX_DIM 10  // Tamaño máximo permitido para las matrices
+// Función para calcular la matriz adjunta
+void adjunta(float matriz[3][3], float adj[3][3]) {
+    adj[0][0] =  matriz[1][1] * matriz[2][2] - matriz[1][2] * matriz[2][1];
+    adj[0][1] = -(matriz[1][0] * matriz[2][2] - matriz[1][2] * matriz[2][0]);
+    adj[0][2] =  matriz[1][0] * matriz[2][1] - matriz[1][1] * matriz[2][0];
 
-// Función para dividir dos matrices de dimensiones arbitrarias
-void dividirMatrices(int mat1[][MAX_DIM], int mat2[][MAX_DIM], float resultado[][MAX_DIM], int filas, int cols) {
-    int i, j;
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
-            if (mat2[i][j] != 0) {
-                resultado[i][j] = (float)mat1[i][j] / mat2[i][j];
-            } else {
-                // Manejo de división por cero, aquí se podría elegir el comportamiento deseado
-                resultado[i][j] = 0.0;  // Por ejemplo, asignar un valor específico
+    adj[1][0] = -(matriz[0][1] * matriz[2][2] - matriz[0][2] * matriz[2][1]);
+    adj[1][1] =  matriz[0][0] * matriz[2][2] - matriz[0][2] * matriz[2][0];
+    adj[1][2] = -(matriz[0][0] * matriz[2][1] - matriz[0][1] * matriz[2][0]);
+
+    adj[2][0] =  matriz[0][1] * matriz[1][2] - matriz[0][2] * matriz[1][1];
+    adj[2][1] = -(matriz[0][0] * matriz[1][2] - matriz[0][2] * matriz[1][0]);
+    adj[2][2] =  matriz[0][0] * matriz[1][1] - matriz[0][1] * matriz[1][0];
+}
+
+// Función para calcular la matriz inversa
+void inversa(float matriz[3][3], float inversa[3][3]) {
+    float det = determinante(matriz);
+    if (det == 0) {
+        printf("La matriz no tiene inversa.\n");
+        return;
+    }
+    float adj[3][3];
+    adjunta(matriz, adj);
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            inversa[i][j] = adj[i][j] / det;
+        }
+    }
+}
+
+// Función para multiplicar dos matrices 3x3
+void multiplicar(float matriz1[3][3], float matriz2[3][3], float resultado[3][3]) {
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            resultado[i][j] = 0;
+            for (int k = 0; k < 3; k++) {
+                resultado[i][j] += matriz1[i][k] * matriz2[j][k];
             }
         }
     }
 }
 
-// Función para imprimir una matriz de dimensiones arbitrarias
-void imprimirMatriz(float matriz[][MAX_DIM], int filas, int cols) {
-    int i, j;
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
-            printf("%.2f\t", matriz[i][j]);
+int main() {
+    float matriz1[3][3];
+    matriz1[0][0]= 11;
+    matriz1[0][1]= 25;
+    matriz1[0][2]= 34;
+    matriz1[1][0]= 45;
+    matriz1[1][1]= 56;
+    matriz1[1][2]= 61;
+    matriz1[2][0]= 71;
+    matriz1[2][1]= 82;
+    matriz1[2][2]= 91;
+    
+
+    float matriz2[3][3];
+    matriz2[0][0]= 10;
+    matriz2[0][1]= 15;
+    matriz2[0][2]= 3;
+    matriz2[1][0]= 8;
+    matriz2[1][1]= 7;
+    matriz2[1][2]= 6;
+    matriz2[2][0]= 7;
+    matriz2[2][1]= 8;
+    matriz2[2][2]= 9;
+
+
+    float inv[3][3];
+    float resultado[3][3];
+
+    inversa(matriz2, inv);
+    multiplicar(matriz1, inv, resultado);
+
+    printf("Resultado de la division de las dos matrices:\n");
+    for (int i = 0; i < 3; i++) {
+        for (int j = 0; j < 3; j++) {
+            printf("%f ", resultado[i][j]);
         }
         printf("\n");
     }
-}
-
-int main() {
-    int filas, cols;
-    
-    printf("Ingrese el número de filas y columnas de las matrices (filas x columnas): ");
-    scanf("%d %d", &filas, &cols);
-
-    // Declarar matrices estáticas
-    int matriz1[MAX_DIM][MAX_DIM], matriz2[MAX_DIM][MAX_DIM];
-    float resultado[MAX_DIM][MAX_DIM];
-    int i, j;
-
-    // Leer elementos de la matriz 1
-    printf("Ingrese los elementos de la matriz 1 (%d x %d):\n", filas, cols);
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
-            scanf("%d", &matriz1[i][j]);
-        }
-    }
-
-    // Leer elementos de la matriz 2
-    printf("Ingrese los elementos de la matriz 2 (%d x %d):\n", filas, cols);
-    for (i = 0; i < filas; i++) {
-        for (j = 0; j < cols; j++) {
-            scanf("%d", &matriz2[i][j]);
-        }
-    }
-
-    // Dividir las matrices
-    dividirMatrices(matriz1, matriz2, resultado, filas, cols);
-
-    // Imprimir el resultado
-    printf("\nResultado de la division:\n");
-    imprimirMatriz(resultado, filas, cols);
 
     return 0;
 }
