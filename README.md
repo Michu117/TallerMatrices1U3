@@ -30,3 +30,5 @@ Cada ejercicio se encuentra en un archivo separado. A continuación se detalla l
 - [`TallerMatrices1U3/ejerciciosM1/13_potenciam.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/13_potenciam.c)
 14. **Suma de Matrices Resultado Hexadecimal**
 - [`TallerMatrices1U3/ejerciciosM1/14_sumamhexa.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/14_sumamhexa.c)
+15. **Ordenar Cartas**
+- [`TallerMatrices1U3/ejerciciosM1/15_cartas.c`](https://github.com/Michu117/TallerMatrices1U3/blob/main/ejerciciosM1/15_cartas.c)
