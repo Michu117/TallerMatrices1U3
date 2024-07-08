@@ -61,7 +61,7 @@ int main() {
     generar_numeros_aleatorios(corazones, NUM_CARTAS);
     generar_numeros_aleatorios(treboles, NUM_CARTAS);
     generar_numeros_aleatorios(diamantes, NUM_CARTAS);
-
+    printf("\nEjercicio 15 (Ordenar Cartas) \n");
     printf("Arreglos generados sin ordenar:\n");
     printf("Picas: ");
     imprimir_arreglo(picas, NUM_CARTAS, 'P');
@@ -78,7 +78,7 @@ int main() {
     ordenar_arreglo(corazones, NUM_CARTAS);
     ordenar_arreglo(treboles, NUM_CARTAS);
     ordenar_arreglo(diamantes, NUM_CARTAS);
-    printf("\nEjercicio 15 (Ordenar Cartas) \n");
+    
     // Imprimir la matriz de cartas ordenadas
     printf("Arreglos ordenados:\n");
     printf("Picas: ");
