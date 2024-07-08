@@ -51,7 +51,7 @@ int main() {
 
     // Multiplicar las matrices
     multiplicarMatrices(matriz1, matriz2, resultado);
-
+    printf("\nEjercicio 11 (Multiplicación de Matrices) \n");
     // Imprimir el resultado
     printf("\nMatriz 1:\n");
     imprimirMatriz(matriz1);
