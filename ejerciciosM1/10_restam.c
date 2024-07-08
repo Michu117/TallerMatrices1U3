@@ -60,7 +60,7 @@ int main() {
 
     // Llamo al procedimiento para sumar las matrices
     sumarMatrices(filas, columnas, matriz1, matriz2, resultado);
-
+    printf("\nEjercicio 10 (Resta de Matrices) \n");
     // Llamo al procedimiento para Presentar las matrices ingresadas y su suma //
     printf("\nMatriz 1:\n");
     imprimirMatriz(filas, columnas, matriz1);
