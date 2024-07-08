@@ -45,25 +45,30 @@ void imprimir_arreglo(int arreglo[], int tam, char palo) {
     printf("\n");
 }
 
-// Función para combinar los arreglos de cartas en una sola matriz
-void combinar_arreglos(int picas[], int corazones[], int treboles[], int diamantes[], int matriz[][13], int tam) {
-    for (int i = 0; i < tam; ++i) {
-        matriz[0][i] = picas[i];
-        matriz[1][i] = corazones[i];
-        matriz[2][i] = treboles[i];
-        matriz[3][i] = diamantes[i];
+// Función para combinar todos los arreglos de cartas en uno solo
+void combinar_todos_los_arreglos(int picas[], int corazones[], int treboles[], int diamantes[], int arreglo_combinado[], int tam) {
+    int i, j = 0;
+
+    for (i = 0; i < tam; ++i) {
+        arreglo_combinado[j++] = picas[i];
+    }
+    for (i = 0; i < tam; ++i) {
+        arreglo_combinado[j++] = corazones[i];
+    }
+    for (i = 0; i < tam; ++i) {
+        arreglo_combinado[j++] = treboles[i];
+    }
+    for (i = 0; i < tam; ++i) {
+        arreglo_combinado[j++] = diamantes[i];
     }
 }
 
-// Función para imprimir la matriz de cartas ordenadas
-void imprimir_matriz(int matriz[][13], int filas, int columnas) {
-    char palos[] = {'P', 'C', 'T', 'D'};
-    for (int i = 0; i < filas; ++i) {
-        for (int j = 0; j < columnas; ++j) {
-            printf("%d%c ", matriz[i][j], palos[i]);
-        }
-        printf("\n");
+// Función para imprimir un arreglo de cartas combinado
+void imprimir_arreglo_combinado(int arreglo[], int tam) {
+    for (int i = 0; i < tam; ++i) {
+        printf("%d ", arreglo[i]);
     }
+    printf("\n");
 }
 
 int main() {
@@ -100,13 +105,16 @@ int main() {
     ordenar_arreglo(treboles, NUM_CARTAS);
     ordenar_arreglo(diamantes, NUM_CARTAS);
     
-    // Combinar los arreglos en una sola matriz
-    int matriz[NUM_PALOS][NUM_CARTAS];
-    combinar_arreglos(picas, corazones, treboles, diamantes, matriz, NUM_CARTAS);
+    // Combinar todos los arreglos en un solo arreglo
+    int arreglo_combinado[NUM_PALOS * NUM_CARTAS];
+    combinar_todos_los_arreglos(picas, corazones, treboles, diamantes, arreglo_combinado, NUM_CARTAS);
 
-    // Imprimir la matriz de cartas ordenadas
-    printf("Matriz de cartas ordenadas:\n");
-    imprimir_matriz(matriz, NUM_PALOS, NUM_CARTAS);
+    // Ordenar el arreglo combinado
+    ordenar_arreglo(arreglo_combinado, NUM_PALOS * NUM_CARTAS);
+
+    // Imprimir el arreglo combinado de cartas ordenadas
+    printf("Arreglo combinado de cartas ordenadas:\n");
+    imprimir_arreglo_combinado(arreglo_combinado, NUM_PALOS * NUM_CARTAS);
 
     return 0;
 }
