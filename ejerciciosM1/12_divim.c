@@ -79,7 +79,7 @@ int main() {
 
     inversa(matriz2, inv);
     multiplicar(matriz1, inv, resultado);
-
+    printf("\nEjercicio 12 (División de Matrices) \n");
     printf("Resultado de la division de las dos matrices:\n");
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
