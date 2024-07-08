@@ -79,7 +79,7 @@ int main() {
 
     // Calcular la potencia de la matriz
     potenciaMatriz(matriz, resultado, exponente);
-
+    printf("\nEjercicio 13 (Potencia de Matrices) \n");
     // Imprimir el resultado
     printf("\nResultado de la potencia de la matriz:\n");
     imprimirMatriz(resultado);
