@@ -78,7 +78,7 @@ int main() {
     ordenar_arreglo(corazones, NUM_CARTAS);
     ordenar_arreglo(treboles, NUM_CARTAS);
     ordenar_arreglo(diamantes, NUM_CARTAS);
-
+    printf("\nEjercicio 15 (Ordenar Cartas) \n");
     // Imprimir la matriz de cartas ordenadas
     printf("Arreglos ordenados:\n");
     printf("Picas: ");
