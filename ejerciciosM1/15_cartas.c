@@ -2,7 +2,17 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Función para ordenar un arreglo usando el método de burbuja (bubblesort)
+// Función para verificar que los números no se repiten
+int buscar_num(int matriz[], int numero, int tamaño) {
+    for (int i = 0; i < tamaño; i++) {
+        if (matriz[i] == numero) {
+            return 1;
+        }
+    }
+    return 0;
+}
+
+// Método Burbuja Para ordenar un arreglo //
 void ordenar(int tamaño, int matriz[]) {
     int temp;
     for (int i = 0; i < tamaño - 1; i++) {
@@ -16,16 +26,6 @@ void ordenar(int tamaño, int matriz[]) {
     }
 }
 
-// Función para verificar que los números no se repiten
-int buscar_num(int matriz[], int numero, int tamaño) {
-    for (int i = 0; i < tamaño; i++) {
-        if (matriz[i] == numero) {
-            return 1;
-        }
-    }
-    return 0;
-}
-
 // Función para generar números aleatorios únicos
 void generar_numeros(int tamaño, int matriz[]) {
     int numero;
@@ -37,7 +37,7 @@ void generar_numeros(int tamaño, int matriz[]) {
     }
 }
 
-// Función principal
+
 int main() {
     const int NUM_PALOS = 4;
     const int NUM_CARTAS = 13;
@@ -54,7 +54,7 @@ int main() {
     generar_numeros(NUM_CARTAS, matriz3);
     generar_numeros(NUM_CARTAS, matriz4);
 
-    // Rellena la matriz madre con números aleatorios
+    // Copiar los números aleatorios a la matriz madre
     for (int i = 0; i < NUM_CARTAS; i++) {
         matriz_madre[0][i] = matriz1[i];
         matriz_madre[1][i] = matriz2[i];
