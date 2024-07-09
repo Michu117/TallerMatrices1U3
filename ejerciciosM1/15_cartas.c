@@ -63,7 +63,7 @@ int main() {
     }
 
     // Imprime la matriz con números aleatorios
-    printf("Las cartas en desorden se ubican asi:\n");
+    printf("Cartas Generadas en Desorden:\n");
     for (int i = 0; i < NUM_PALOS; i++) {
         for (int j = 0; j < NUM_CARTAS; j++) {
             if (matriz_madre[i][j] == 1 || matriz_madre[i][j] == 11 || matriz_madre[i][j] == 12 || matriz_madre[i][j] == 13) {
@@ -99,7 +99,7 @@ int main() {
     }
 
     // Imprime los valores de la matriz ordenados
-    printf("\nLas cartas en orden se ubican asi:\n");
+    printf("\nCartas Generadas Ordenadas:\n");
     for (int i = 0; i < NUM_PALOS; i++) {
         for (int j = 0; j < NUM_CARTAS; j++) {
             if (matriz_madre[i][j] == 1 || matriz_madre[i][j] == 11 || matriz_madre[i][j] == 12 || matriz_madre[i][j] == 13) {
