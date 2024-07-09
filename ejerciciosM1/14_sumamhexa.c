@@ -1,5 +1,6 @@
 #include <stdio.h>
 
+// Función para sumar matrices
 void sumarMatrices(int filas, int columnas, int matriz1[filas][columnas], int matriz2[filas][columnas], int resultado[filas][columnas]) {
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
@@ -8,17 +9,43 @@ void sumarMatrices(int filas, int columnas, int matriz1[filas][columnas], int ma
     }
 }
 
-void imprimirMatriz(int filas, int columnas, int matriz[filas][columnas]) {
+// Función para convertir un número decimal a hexadecimal
+void decimalAHexadecimal(int numero, char *hexadecimal) {
+    char hexDigits[] = "0123456789ABCDEF";
+    int indice = 0;
+    int residuo;
+    char temp[10];  // temporal para almacenar los caracteres en orden inverso
+
+    // Divisiones sucesivas
+    do {
+        residuo = numero % 16;
+        temp[indice++] = hexDigits[residuo];
+        numero = numero / 16;
+    } while (numero > 0);
+
+    // Invertir el orden de los caracteres
+    int j = 0;
+    for (int i = indice - 1; i >= 0; i--) {
+        hexadecimal[j++] = temp[i];
+    }
+    hexadecimal[j] = '\0';  // Terminar la cadena con el carácter nulo
+}
+
+// Función para imprimir matrices en formato hexadecimal
+void imprimirMatrizHexadecimal(int filas, int columnas, int matriz[filas][columnas]) {
+    char hex[10];
     for (int i = 0; i < filas; i++) {
         for (int j = 0; j < columnas; j++) {
-            printf("%X ", matriz[i][j]);
+            decimalAHexadecimal(matriz[i][j], hex);
+            printf("%s ", hex);
         }
         printf("\n");
     }
 }
 
 int main() {
-    int filas, columnas;
+    int filas = 0, columnas = 0;
+
     // Ingresar las dimensiones de la matriz
     while (filas < 2 || columnas < 2 || filas != columnas) {
         printf("\nIntroduce el número de filas: ");
@@ -36,6 +63,7 @@ int main() {
             printf("\nIngrese el mismo número de filas y columnas para tener una matriz cuadrada\n");
         }
     }
+
     int matriz1[filas][columnas], matriz2[filas][columnas], resultado[filas][columnas];
 
     // Ingresar los elementos de la matriz 1
@@ -58,16 +86,18 @@ int main() {
 
     // Llamo al procedimiento para sumar las matrices
     sumarMatrices(filas, columnas, matriz1, matriz2, resultado);
+    
     printf("\nEjercicio 14 (Suma de Matrices Resultado Hexadecimal) \n");
-    // Llamo al procedimiento para Presentar las matrices ingresadas y su suma //
+
+    // Llamo al procedimiento para presentar las matrices ingresadas y su suma en hexadecimal
     printf("\nMatriz 1:\n");
-    imprimirMatriz(filas, columnas, matriz1);
+    imprimirMatrizHexadecimal(filas, columnas, matriz1);
 
     printf("\nMatriz 2:\n");
-    imprimirMatriz(filas, columnas, matriz2);
+    imprimirMatrizHexadecimal(filas, columnas, matriz2);
 
     printf("\nResultado de la suma:\n");
-    imprimirMatriz(filas, columnas, resultado);
+    imprimirMatrizHexadecimal(filas, columnas, resultado);
 
     return 0;
 }
